@@ -1,0 +1,80 @@
+*{
+    box-sizing: border-box;
+}
+.nowplaying{
+
+    .demo-infinite-container{
+
+            .ant-list-item{
+                display: flex;
+                padding-left: 10px;
+
+                    .img_box{
+                        width: 66px;
+                    }
+                    .content{
+                        width: 268px; padding: 0 10px;
+                        span{
+                            font-size: 13px;
+                        }
+                        .title{
+                            font-size: 17px;
+                            .t_name{
+                                color: #191a1b;
+                                font-size: 16px;
+                                height: 22px;
+                                line-height: 22px;
+                                margin-right: 5px;
+                            }
+                            .t_item{
+                                font-size: 9px;
+                                color: #fff;
+                                background-color: #d2d6dc;
+                                height: 14px;
+                                line-height: 14px;
+                                padding: 0 2px;
+                                border-radius: 2px;
+                            }
+                        }
+                    }
+                    .ant-btn{
+                        border: 1px solid #ff5f16;
+                        border-radius: 4px;
+                        color: #ff5f16;
+                    }
+                
+
+            }
+        
+    }
+}
+
+
+// <List.Item key={item._id} style={{ height: 124, width: 400 }}>
+
+// <div style={{ width: 66 }} className="img_box">
+//     <img src={item.poster} alt="" style={{ width: 66, height: 90 }}>
+// </div>
+// <div className="content">
+//     <div>    
+//         <span>{item.name}</span>
+//         <span>{item.filmType.name}</span>
+//     </div>
+//     <div>观众评分</div>
+//     <div>
+//         <span>
+//             主演：{item.actors.map(item => {
+//                 return item.name
+//             }).join("  ")}
+//         </span>
+//     </div>
+//     <div>
+//         <span>
+//             {item.nation} | {item.runtime} 分钟
+//             </span>
+//     </div>
+// </div>
+// <div className="botton">
+//     <Button>购票</Button>
+// </div>
+// </List.Item>

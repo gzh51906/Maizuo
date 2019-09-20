@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import ComponentButtom from "../../component/ComponentButtom/ComponentButtom"
+
 class Mine extends React.Component {
     state = {
 
@@ -14,7 +16,7 @@ class Mine extends React.Component {
         return (
             <div>
                 wode
-                
+                <ComponentButtom />
             </div>
         );
     }
