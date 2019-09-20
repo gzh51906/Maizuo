@@ -21,10 +21,10 @@ class Home extends Component {
             <div className="film">
                 <Carousel autoplay>
                     <div>
-                        <img src={"../../asset/img/lunbo2.jpg"} alt="" style={{ width: 414, height: 231 }} />
+                        <img src={"../../asset/img/lunbo2.jpg"} alt="" style={{ width: '100%' }} />
                     </div>
                     <div>
-                        <img src={"../../asset/img/lunbo1.jpg"} alt="" style={{ width: 414, height: 231 }} />
+                        <img src={"../../asset/img/lunbo1.jpg"} alt="" style={{ width: '100%' }} />
                     </div>
                 </Carousel>
                 <Menu onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">

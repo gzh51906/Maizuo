@@ -7,7 +7,7 @@ const { token, formatData } = require('../utils');
 // 引入路由文件
 const goodsRouter = require('./goods');
 const userRouter = require('./user');
-const yulist = require("./yulist")
+const cinema = require("./cinema")
 const cartlist = require("./cartlist")
 
 
@@ -28,7 +28,7 @@ Router.use((req, res, next) => {
 })
 
 // 商品
-Router.use('/yulist', yulist);
+Router.use('/cinema', cinema);
 Router.use('/cartlist', cartlist);
 Router.use('/goods', goodsRouter);
 Router.use('/user', userRouter);

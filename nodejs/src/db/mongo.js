@@ -69,10 +69,11 @@ exports.update = async (colName, query, data) => {
 
 
 // @查
-exports.find = async (colName, query = {}, { sort, limit, skip, asc } = {}) => {
+exports.find = async (colName, query = {}, { sort, limit, skip, asc, address } = {}) => {
     // colName：集合名称
     // query: 查询条件
     // data: 更新的数据
+
     let { db, client } = await connect();
 
     //  获取集合
@@ -85,6 +86,15 @@ exports.find = async (colName, query = {}, { sort, limit, skip, asc } = {}) => {
     }
 
     let result = collection.find(query);
+    // let result = collection.find({ districtName: /白云区/ });
+    if (address) {
+        if (address == "全城") {
+            result = collection.find(query)
+        } else {
+            result = collection.find({ districtName: address });
+        }
+
+    }
 
     // 筛选
     if (sort) {
@@ -94,13 +104,13 @@ exports.find = async (colName, query = {}, { sort, limit, skip, asc } = {}) => {
     }
 
     if (limit) {
-        result = result.limit(limit);
+        result = result.limit(limit * 1);
     }
 
     if (skip) {
-        result = result.skip(skip);
+        result = result.skip(skip * 1);
     }
-
+    // console.log(result)
     let data = await result.toArray();
 
     client.close();

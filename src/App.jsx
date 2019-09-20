@@ -5,7 +5,7 @@ import { Route, Redirect, Switch, withRouter } from 'react-router-dom';
 import { Menu, Icon, Layout } from 'antd';
 const { Footer, Content } = Layout;
 
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
 import Film from '~/film/Film';
 import Mine from '~/mine/Mine';
@@ -58,7 +58,7 @@ class App extends Component {
     render() {
         return (
             <div className="index">
-                <Layout>
+                <Layout style={{ width: '100%' }}>
                     <Content>
 
                         <Switch>
@@ -110,12 +110,12 @@ class App extends Component {
 
 App = withRouter(App);//返回一个新的组件 
 
-let mapStateToProps = (state) => {
-    return {
-        cartlength: state.cart.goodslist.length
-    }
-}
+// let mapStateToProps = (state) => {
+//     return {
+//         cartlength: state.cart.goodslist.length
+//     }
+// }
 
-App = connect(mapStateToProps)(App);
+// App = connect(mapStateToProps)(App);
 
 export default App;
