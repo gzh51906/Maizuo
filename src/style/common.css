@@ -6,7 +6,6 @@ body {
 #app {
   width: 100%;
   height: 100%;
-  background: pink;
 }
 
 #app .index {
@@ -14,6 +13,10 @@ body {
   height: 100%;
   display: flex;
   overflow: hidden;
+}
+
+#app .index .ant-layout-content {
+  overflow: auto;
 }
 
 #app .index .ant-layout-footer {

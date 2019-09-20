@@ -1,0 +1,34 @@
+.footer{
+    padding: 0;
+    width: 100%;
+    position: fixed;
+    left: 0;bottom: 0;
+    ul{
+        width: 100%;
+        height: 49px;
+        display: flex;
+        justify-content:space-around;
+        li{
+            border: none;
+            display: flex;
+            flex-direction: column;
+            font-size: 14px;
+            position: relative;
+            svg{
+                width: 1.5em;
+                height: 1.5em;
+            }
+            p{
+                position: absolute;
+                bottom: -31px;
+                left: 15px;
+            }
+        }
+        .ant-menu-item-active{
+            color:#ea8446;
+        }
+        .ant-menu-item-selected{
+            color:#ea8446;
+        }
+    }
+}

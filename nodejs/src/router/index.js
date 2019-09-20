@@ -9,7 +9,7 @@ const goodsRouter = require('./goods');
 const userRouter = require('./user');
 const cinema = require("./cinema")
 const cartlist = require("./cartlist")
-
+const filmRouter = require('./film')
 
 
 // 利用中间bodyParse格式化请求参数
@@ -32,6 +32,7 @@ Router.use('/cinema', cinema);
 Router.use('/cartlist', cartlist);
 Router.use('/goods', goodsRouter);
 Router.use('/user', userRouter);
+Router.use('/film', filmRouter);
 Router.get('/verify', (req, res) => {
     // 获取前端传入的token
     // 对token进行校验

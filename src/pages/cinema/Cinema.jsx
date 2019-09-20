@@ -3,7 +3,7 @@ import { Affix, Button, Icon, Row, Col } from 'antd';
 import './cinema.css'
 import Api from '../../api'
 import { connect } from 'react-redux';
-
+import ComponentButtom from '../../component/ComponentButtom/ComponentButtom'
 
 
 
@@ -76,7 +76,7 @@ class Discover extends Component {
     }
     async  componentDidMount() {
         let data = await Api.get('http://localhost:1908/cinema/check', {})
-
+        // console.log(data.data)
         this.setState({
             cinemalist: data.data.slice(0, 20),
             page: parseInt(data.data.length / 20)
@@ -122,8 +122,8 @@ class Discover extends Component {
         this.setState({
             ref: e.target
         })
-
-        if (e.target.scrollTop >= 900 * this.state.reqnum && !this.state.isreq && this.state.sub2active == 'App订票') {
+        console.log(e.target.scrollTop)
+        if (e.target.scrollTop >= 800 * this.state.reqnum && !this.state.isreq && this.state.sub2active == 'App订票') {
             this.setState({ reqnum: this.state.reqnum + 1 })
             this.props.addCinema(20, this.state.reqnum)
 
@@ -232,7 +232,7 @@ class Discover extends Component {
 
                 </div>
 
-
+                <ComponentButtom />
             </div>
         )
     }
