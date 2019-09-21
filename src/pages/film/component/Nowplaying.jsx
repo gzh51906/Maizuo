@@ -30,10 +30,18 @@ class Nowplaying extends Component {
         return data
     }
 
+    goto = (id, item, e) => {
+        console.log(item);
+
+        this.props.history.push({ pathname: `/filmdetail/${id}`, query: { data: item } })
+    }
+    bgoto = (id, e) => {
+        e.stopPropagation();
+        console.log(1231231);
+
+    }
     handleInfiniteOnLoad = () => {
         let { data } = this.state;
-        console.log(data);
-
         this.setState({
             loading: true,
         });
@@ -55,55 +63,58 @@ class Nowplaying extends Component {
         return (
             <div className="nowplaying">
                 <div className="demo-infinite-container">
-                    <InfiniteScroll
+                    {/* <InfiniteScroll
                         initialLoad={false}
                         pageStart={0}
                         loadMore={this.handleInfiniteOnLoad}
                         hasMore={!this.state.loading && this.state.hasMore}
                         useWindow={false}
-                    >
-                        <List
-                            dataSource={this.state.data}
-                            renderItem={item => (
-                                <List.Item
-                                    key={item._id}
-                                    style={{ height: 124, width: "100%" }}
-                                >
-                                    <div className="img_box">
-                                        <img src={item.poster} alt="" style={{ width: 66, height: 90 }} />
-                                    </div>
-                                    <div className="content">
-                                        <div className="title">
-                                            <span className="t_name">{item.name}</span>
-                                            <span className="t_item">{item.filmType.name}</span>
-                                        </div>
-                                        {item.grade ? < div > 观众评分:{item.grade}</div> : <div>观众评分:无</div>}
-                                        <div>
-                                            <span>
-                                                主演：{item.actors.map(item => {
-                                                    return item.name
-                                                }).join("  ")}
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <span>
-                                                {item.nation} | {item.runtime} 分钟
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    <Button>购票</Button>
-
-                                </List.Item>
-                            )}
-                        >
-                            {this.state.loading && this.state.hasMore && (
-                                <div className="demo-loading-container">
-                                    <Spin />
+                    > */}
+                    <List
+                        dataSource={this.state.data}
+                        renderItem={item => (
+                            <List.Item
+                                key={item._id}
+                                style={{ height: 124, width: "100%" }}
+                                onClick={this.goto.bind(this, item.filmId, item)}
+                            >
+                                <div className="img_box" >
+                                    <img src={item.poster} alt="" style={{ width: 66, height: 90 }} />
                                 </div>
-                            )}
-                        </List>
-                    </InfiniteScroll>
+                                <div className="content">
+                                    <div className="title">
+                                        <span className="t_name">{item.name}</span>
+                                        <span className="t_item">{item.filmType.name}</span>
+                                    </div>
+                                    {item.grade ? < div > 观众评分:{item.grade}</div> : <div>观众评分:无</div>}
+                                    <div>
+                                        <span>
+                                            主演：{item.actors.map(item => {
+                                                return item.name
+                                            }).join("  ")}
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span>
+                                            {item.nation} | {item.runtime} 分钟
+                                            </span>
+                                    </div>
+                                </div>
+
+                                <Button
+                                    onClick={this.bgoto.bind(this, item._id)}
+                                >购票</Button>
+
+                            </List.Item>
+                        )}
+                    >
+                        {this.state.loading && this.state.hasMore && (
+                            <div className="demo-loading-container">
+                                <Spin />
+                            </div>
+                        )}
+                    </List>
+                    {/* </InfiniteScroll> */}
                 </div>
             </div>
         )

@@ -13,6 +13,7 @@ import Film from '~/film/Film';
 import Mine from '~/mine/Mine';
 import Cinema from '~/cinema/Cinema';
 import Information from '~/information/Information';
+import FilmDetail from '~/filmDetail/filmDetail';
 
 import "./style/common.css"
 import { log } from 'util';
@@ -42,6 +43,8 @@ class App extends Component {
                             <Route path="/mine" component={Mine} />
                             {/* 资讯 */}
                             <Route path="/information" component={Information} />
+                            {/* 电影详情页 */}
+                            <Route path="/filmdetail/:id" component={FilmDetail} />
 
                             {/* 登陆注册 */}
                             {/* <Route path="/login" component={Login} /> */}
