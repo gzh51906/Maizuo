@@ -4,6 +4,7 @@ import { HashRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import App from './App';
+// import './rem.js'
 
 import store from './redux/store'
 

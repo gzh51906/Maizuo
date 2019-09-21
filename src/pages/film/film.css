@@ -94,7 +94,7 @@
 }
 
 .film .ant-carousel {
-  width: 414px;
+  width: 100%;
   height: 231px;
   flex-shrink: 0;
   position: relative;
@@ -112,7 +112,8 @@
   height: 231px;
 }
 
-.film .ant-carousel .slick-slider .slick-list .slick-track .slick-slide, .film .ant-carousel .slick-slider .slick-list .slick-track .slick-cloned {
+.film .ant-carousel .slick-slider .slick-list .slick-track .slick-slide,
+.film .ant-carousel .slick-slider .slick-list .slick-track .slick-cloned {
   height: 231px;
 }
 

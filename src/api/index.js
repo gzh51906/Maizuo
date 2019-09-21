@@ -1,8 +1,5 @@
 import axios from 'axios';
 
-let nanshigou = axios.create({
-    baseURL: 'https://www.nanshig.com/mobile/index.php'
-})
 
 let film = axios.create({
     baseURL: 'http://localhost:1906/film'
@@ -12,13 +9,12 @@ let ready_film = axios.create({
     baseURL: 'http://localhost:1906/film/ready_film'
 })
 
-async function get(params) {
-    let { data } = await nanshigou.get('', {
-        params
-    })
-    return data;
-}
 
+
+async function get(url, params) {
+    let { data } = await axios.get(url, { params })
+    return data
+}
 //获取已经上映的商品的信息
 let getFilm = async (params) => {
     let { data } = await film.get("", {
@@ -67,11 +63,26 @@ let remove = () => {
 
 }
 
+async function cinema(limit, skip, address) {
+
+    let { data } = await axios.get('http://localhost:1908/cinema/check', { params: { limit, skip: skip * 20 } })
+    return data
+}
+// 区域电影院查询
+async function addresscinema(address) {
+
+    let { data } = await axios.get('http://localhost:1908/cinema/check', { params: { address } })
+    return data
+}
+
+
 export default {
     get,
     post,
     patch,
     delete: remove,
+    cinema,
+    addresscinema,
     getFilm,
     getReadyFilm
 }

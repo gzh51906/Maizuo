@@ -5,7 +5,7 @@ import { Route, Redirect, Switch, withRouter } from 'react-router-dom';
 import { Menu, Icon, Layout } from 'antd';
 const { Footer, Content } = Layout;
 
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
 
 
@@ -31,7 +31,7 @@ class App extends Component {
     render() {
         return (
             <div className="index">
-                <Layout>
+                <Layout style={{ width: '100%' }}>
                     <Content>
 
                         <Switch>
