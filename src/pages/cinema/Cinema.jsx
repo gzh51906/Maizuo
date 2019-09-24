@@ -14,6 +14,7 @@ class Discover extends Component {
     state = {
         // DOM节点
         ref: "",
+        DOM: false,
         // 
         clicknum: 1,
         openKeys: '',
@@ -64,7 +65,10 @@ class Discover extends Component {
         this.setState({
             sub2active: text
         })
-        this.state.ref.scrollTop = 0
+        if (this.state.DOM) {
+            this.state.ref.scrollTop = 0
+        }
+
     }
     sub3list = (i) => {
 
@@ -113,7 +117,9 @@ class Discover extends Component {
             actaddress: item
         })
         this.props.address(item)
-        this.state.ref.scrollTop = 0
+        if (this.state.DOM) {
+            this.state.ref.scrollTop = 0
+        }
 
     }
 
@@ -122,7 +128,12 @@ class Discover extends Component {
         this.setState({
             ref: e.target
         })
-        console.log(e.target.scrollTop)
+        if (e.target.scrollTop >= 100) {
+            this.setState({
+                DOM: true
+            })
+        }
+        // console.log(e.target.scrollTop)
         if (e.target.scrollTop >= 800 * this.state.reqnum && !this.state.isreq && this.state.sub2active == 'App订票') {
             this.setState({ reqnum: this.state.reqnum + 1 })
             this.props.addCinema(20, this.state.reqnum)
@@ -145,6 +156,10 @@ class Discover extends Component {
             })
         }
 
+    }
+    // 跳转
+    goto = (_id) => {
+        this.props.history.push(`/cinemadetail/${_id}`)
     }
 
 
@@ -199,7 +214,7 @@ class Discover extends Component {
                     {this.state.sub2active == '前台兑票' ? <ul>
                         {/* 前台兑票 */}
                         {this.props.orderlist.map((item, i) => {
-                            return <li key={i}>
+                            return <li key={i} onClick={this.goto.bind(this, item._id)}>
                                 <div className="list-left">
                                     <h5>{item.name}</h5>
                                     {JSON.parse(item.ticketTypes).map(item => { return <span key={item.name}>{item.name}</span> })}
@@ -216,7 +231,7 @@ class Discover extends Component {
                     </ul> : <ul>
                             {/* App订票 */}
                             {this.props.cinemalist.map((item, i) => {
-                                return <li key={i}>
+                                return <li key={i} onClick={this.goto.bind(this, item._id)}>
 
                                     <div className="list-left">
                                         <h5>{item.name}</h5>

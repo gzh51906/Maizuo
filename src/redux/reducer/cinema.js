@@ -2,7 +2,10 @@
 // 初始state
 let defaultState = {
     cinemalist: [],
-    orderlist: []
+    orderlist: [],
+    filmlist: [],
+    actfilm: {}
+
 
 }
 
@@ -33,11 +36,26 @@ function reducer(state = defaultState, action) {
                 orderlist: [...state.orderlist, ...action.order.order]
             }
         case 'get_address':
-            console.log(action)
+            // console.log(action)
             return {
                 ...state,
                 cinemalist: [...action.data]
             }
+        case 'get_film':
+            // console.log(action)
+            return {
+                ...state,
+                filmlist: [...action.data],
+                actfilm: action.data[0],
+            }
+        case 'act_film':
+            // console.log(action)
+            return {
+                ...state,
+                actfilm: state.filmlist[action.index]
+            }
+
+
         // 当所有跳转不满足时，返回初始state
         default:
             return state;

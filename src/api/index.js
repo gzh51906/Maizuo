@@ -12,6 +12,7 @@ let ready_film = axios.create({
 
 
 async function get(url, params) {
+    // console.log(params)
     let { data } = await axios.get(url, { params })
     return data
 }
