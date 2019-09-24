@@ -42,11 +42,21 @@ Router.get('/ready_film/', async (req, res) => {
     res.send(formatData({ data }))
 })
 
+//根据filmId获取某条数据
+Router.get('/:id', async (req, res) => {
+
+    let { id } = req.params;
+
+    let data = await find('film', { filmId: id });
+
+    res.send(formatData({ data }))
+})
+
 
 Router.get('/:id', async (req, res) => {
 
     let { id } = req.params;
-    let data = await find('goods', { _id: id });
+    let data = await find('ready_film', { _id: id });
 
     res.send(formatData({ data }))
 })

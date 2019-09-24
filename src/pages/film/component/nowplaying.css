@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+.nowplaying {
+  padding-bottom: 50px;
+}
+
 .nowplaying .demo-infinite-container .ant-list-item {
   display: flex;
   padding-left: 10px;
@@ -40,6 +44,12 @@
   line-height: 14px;
   padding: 0 2px;
   border-radius: 2px;
+}
+
+.nowplaying .demo-infinite-container .ant-list-item .content .n_actors {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .nowplaying .demo-infinite-container .ant-list-item .ant-btn {

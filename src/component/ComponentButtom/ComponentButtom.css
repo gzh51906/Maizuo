@@ -34,8 +34,10 @@
 
 .footer ul .ant-menu-item-active {
   color: #ea8446;
+  border: none;
 }
 
 .footer ul .ant-menu-item-selected {
+  border: none;
   color: #ea8446;
 }

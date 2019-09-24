@@ -87,7 +87,7 @@ class Nowplaying extends Component {
                                         <span className="t_item">{item.filmType.name}</span>
                                     </div>
                                     {item.grade ? < div > 观众评分:{item.grade}</div> : <div>观众评分:无</div>}
-                                    <div>
+                                    <div className='n_actors'>
                                         <span>
                                             主演：{item.actors.map(item => {
                                                 return item.name

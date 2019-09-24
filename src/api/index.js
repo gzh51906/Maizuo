@@ -2,11 +2,11 @@ import axios from 'axios';
 
 
 let film = axios.create({
-    baseURL: 'http://localhost:1906/film'
+    baseURL: 'http://localhost:1908/film'
 })
 
 let ready_film = axios.create({
-    baseURL: 'http://localhost:1906/film/ready_film'
+    baseURL: 'http://localhost:1908/film/ready_film'
 })
 
 
@@ -75,6 +75,19 @@ async function addresscinema(address) {
     return data
 }
 
+//根据filmId获取某条数据
+let getflimdetail = async (filmId, params) => {
+    let { data } = await axios.get(`http://localhost:1908/film/${filmId}`, { params })
+
+    data.data.forEach(element => {
+        element.actors = JSON.parse(element.actors)
+        element.filmType = JSON.parse(element.filmType)
+        element.photos = JSON.parse(element.photos)
+        element.item = JSON.parse(element.item)
+        element.premiereAt = (new Date(element.premiereAt * 1)).toLocaleDateString()
+    });
+    return data
+}
 
 export default {
     get,
@@ -84,5 +97,6 @@ export default {
     cinema,
     addresscinema,
     getFilm,
-    getReadyFilm
+    getReadyFilm,
+    getflimdetail
 }

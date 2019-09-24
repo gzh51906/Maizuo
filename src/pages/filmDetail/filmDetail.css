@@ -1,0 +1,141 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.detail {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.detail .goback {
+  position: absolute;
+  left: 0;
+  top: 0px;
+  z-index: 999;
+  padding-left: 10px;
+  width: 100%;
+  height: 44px;
+  display: flex;
+}
+
+.detail .goback i {
+  text-align: center;
+  line-height: 30px;
+  background: rgba(179, 161, 161, 0.2);
+  border-radius: 15px;
+  margin-top: 5px;
+}
+
+.detail .d_photo {
+  height: 231px;
+}
+
+.detail .d_photo img {
+  width: 100%;
+}
+
+.detail .d_filminfo {
+  min-height: 186px;
+  background: paleturquoise;
+  padding: 15px;
+  padding-top: 12px;
+  background-color: #fff;
+  margin-bottom: 5px;
+}
+
+.detail .d_filminfo .d_f_name {
+  color: #191a1b;
+  font-size: 18px;
+  height: 24px;
+  line-height: 24px;
+  margin-right: 7px;
+}
+
+.detail .d_filminfo .d_f_type {
+  font-size: 9px;
+  color: #fff;
+  background-color: #d2d6dc;
+  height: 14px;
+  line-height: 14px;
+  padding: 0 2px;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+.detail .d_filminfo .d_f_common {
+  font-size: 13px;
+  color: #797d82;
+  margin-top: 4px;
+}
+
+.detail .d_filminfo .d_f_synopsis {
+  margin-top: 12px;
+  height: 38px;
+  overflow: hidden;
+  font-size: 13px;
+  color: #797d82;
+}
+
+.detail .d_actors {
+  width: 100%;
+  height: 192px;
+  overflow-x: auto;
+  background: #fff;
+}
+
+.detail .d_actors .ant-list .ant-row {
+  flex-wrap: nowrap;
+  display: flex;
+}
+
+.detail .d_actors .ant-list .ant-row .ant-col {
+  flex: 1;
+  margin: 0 12px;
+}
+
+.detail .d_actors .ant-list .ant-row .ant-col .ant-card-body {
+  padding: 2px 0 0;
+  text-align: center;
+}
+
+.detail .d_actors .ant-list .ant-row .ant-col .ant-card-body p {
+  margin-bottom: 3px;
+}
+
+.detail .d_filmphoto {
+  width: 100%;
+  height: 177px;
+  background: olivedrab;
+  overflow-y: auto;
+  background: #fff;
+  margin-bottom: 10px;
+}
+
+.detail .d_filmphoto .d_f_photos {
+  height: 62px;
+  width: 100%;
+  padding: 15px;
+}
+
+.detail .d_filmphoto .ant-list .ant-row {
+  flex-wrap: nowrap;
+  display: flex;
+}
+
+.detail .d_filmphoto .ant-list .ant-row .ant-col {
+  flex-basis: 150px;
+  margin: 0 12px;
+}
+
+.detail .gotobuy {
+  height: 49px;
+  width: 100%;
+  text-align: center;
+  background-color: #ff5f16;
+  color: #fff;
+  font-size: 16px;
+  line-height: 49px;
+}

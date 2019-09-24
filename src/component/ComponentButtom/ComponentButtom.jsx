@@ -33,7 +33,7 @@ class ComponentButtom extends Component {
     }
     componentDidMount() {
         let data = this.props.location.pathname
-        console.log(data);
+
         if (data == '/') {
             data = "/film"
         }
@@ -43,9 +43,10 @@ class ComponentButtom extends Component {
         });
     }
     goto = (path) => {
+        console.log(path, 222222);
         this.props.history.push(path)
     }
-    changeMenu = ({ key }) => {
+    changeMenu = ({ key }, e) => {
         this.setState({
             current: key
         });

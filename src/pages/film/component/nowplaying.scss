@@ -2,6 +2,7 @@
     box-sizing: border-box;
 }
 .nowplaying{
+    padding-bottom: 50px;
 
     .demo-infinite-container{
 
@@ -36,6 +37,11 @@
                                 border-radius: 2px;
                             }
                         }
+                        .n_actors{
+                            overflow: hidden;
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
+                        }
                     }
                     .ant-btn{
                         border: 1px solid #ff5f16;
@@ -48,33 +54,3 @@
         
     }
 }
-
-
-// <List.Item key={item._id} style={{ height: 124, width: 400 }}>
-
-// <div style={{ width: 66 }} className="img_box">
-//     <img src={item.poster} alt="" style={{ width: 66, height: 90 }}>
-// </div>
-// <div className="content">
-//     <div>    
-//         <span>{item.name}</span>
-//         <span>{item.filmType.name}</span>
-//     </div>
-//     <div>观众评分</div>
-//     <div>
-//         <span>
-//             主演：{item.actors.map(item => {
-//                 return item.name
-//             }).join("  ")}
-//         </span>
-//     </div>
-//     <div>
-//         <span>
-//             {item.nation} | {item.runtime} 分钟
-//             </span>
-//     </div>
-// </div>
-// <div className="botton">
-//     <Button>购票</Button>
-// </div>
-// </List.Item>

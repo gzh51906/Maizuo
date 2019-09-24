@@ -14,9 +14,12 @@ import Mine from '~/mine/Mine';
 import Cinema from '~/cinema/Cinema';
 import Information from '~/information/Information';
 import FilmDetail from '~/filmDetail/filmDetail';
+import Setting from '~/user/Setting';
+import User from '~/user/User';
+import Order from '~/user/component/order';
 
 import "./style/common.css"
-import { log } from 'util';
+
 
 class App extends Component {
     state = {
@@ -40,11 +43,17 @@ class App extends Component {
                             {/* 电影院 */}
                             <Route path="/cinema" component={Cinema} />
                             {/* 我的 */}
-                            <Route path="/mine" component={Mine} />
+                            <Route path="/mine" component={Mine} exact />
                             {/* 资讯 */}
                             <Route path="/information" component={Information} />
                             {/* 电影详情页 */}
                             <Route path="/filmdetail/:id" component={FilmDetail} />
+                            {/* 设置 */}
+                            <Route path="/setting" component={Setting} />
+                            {/* 订单页 */}
+                            <Route path="/user/order" component={Order} />
+                            {/* 设置 */}
+                            <Route path="/user" component={User} />
 
                             {/* 登陆注册 */}
                             {/* <Route path="/login" component={Login} /> */}
@@ -75,6 +84,7 @@ App = withRouter(App);//返回一个新的组件
 //         cartlength: state.cart.goodslist.length
 //     }
 // }
+
 
 // App = connect(mapStateToProps)(App);
 
