@@ -13,15 +13,19 @@ class Cinemadetail extends Component {
         data: ['../../asset/img/p.jpg', '../../asset/img/z.jpg', '../../asset/img/w.jpg', '../../asset/img/x.jpg', '../../asset/img/l.jpg', '../../asset/img/y.jpg', '../../asset/img/zx.jpg', '../../asset/img/j.jpg', '../../asset/img/xx.jpg', '../../asset/img/m.jpg', '../../asset/img/f.jpg'],
 
         slideIndex: 0,
-        // month: '',
+        // 标签时间
         date: [],
         film: {},
         actors: "",
+        // 影院信息
         cinema: "",
         showtime: [],
         // 选者场次的时间
         selecttime: '',
+
         language: '',
+        // 选中的影片id
+        filmId: "",
 
 
 
@@ -32,13 +36,15 @@ class Cinemadetail extends Component {
     }
     async componentDidMount() {
 
-        console.log(this.props, this.props.match.params)
+
+        // 影院信息
         let data = await Api.get('http://localhost:1908/cinema/id', { _id: this.props.match.params.id })
         // console.log("data", data)
         this.setState({ cinema: data.data[0] })
         var date = new Date()
         // 月
-        // console.log(date.getMonth())
+
+
         let arr = []
         this.setState({ month: date.getMonth() + 1 })
         for (var i = 0; i < 7; i++) {
@@ -52,10 +58,12 @@ class Cinemadetail extends Component {
         this.state.selecttime = arr[0];
         this.setState({ date: arr, selecttime: arr[0] })
 
+
         this.props.getFilm()
         setTimeout(() => {
             this.state.film = this.props.filmlist[0]
-            this.setState({ film: this.props.filmlist[0] })
+            // console.log(this.props.filmlist[0])
+            this.setState({ film: this.props.filmlist[0], })
             // console.log(this.state.film)
             let arr = JSON.parse(this.props.filmlist[0].actors).map((item) => { return '|' + item.name }).join("")
             this.state.actors = arr
@@ -80,7 +88,7 @@ class Cinemadetail extends Component {
 
             let arr = JSON.parse(this.props.filmlist[i].actors).map((item) => { return '|' + item.name }).join("")
             // this.setState({ actors: arr })
-            console.log(arr)
+            // console.log(this.state.filmId)
         }, 100)
 
     }
@@ -93,7 +101,7 @@ class Cinemadetail extends Component {
     goto = (id2) => {
         // this.props.history.push({ pathname: path, query: { filmname: this.state.film.name, time: this.state.selecttime, showtime: '09: 45', cinema: this.state.cinema.name } })
         let id1 = this.props.match.params.id
-        let id = id1 + "&" + id2 + "&" + this.state.film.name
+        let id = id1 + "&" + id2 + "&" + this.state.film._id + "&" + this.state.film.name
         console.log(id)
         this.props.history.push(`/schedule/${id}`)
     }

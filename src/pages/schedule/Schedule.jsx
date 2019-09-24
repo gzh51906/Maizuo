@@ -16,7 +16,7 @@ class Schedule extends Component {
         moveY: 0,
         // 0代表这个没有位置，1代表空位，2代表已经被人订了，3代表自己预定
         seats: [],
-        seat: [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,], [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1], [0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1, 1, 0, 0, 0, 0], [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1], [2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2]],
+        // seat: [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,], [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1], [0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1, 1, 0, 0, 0, 0], [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1], [2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2]],
         // 取消选座
         iSoff: false,
         totalprice: 0,
@@ -32,6 +32,9 @@ class Schedule extends Component {
         filmname: '',
         // 语言
         language: {},
+        id: '',
+        // 数量
+        qty: 0
 
 
     }
@@ -88,17 +91,20 @@ class Schedule extends Component {
         }
 
         if (this.state.seats[index][i] == 1) {
-
+            this.state.qty += 1
             // 让手机号码显示
+            // 让用户控制购票数量为5张
+            if (this.state.qty <= 5) {
+                this.state.seats[index][i] = 3
+                this.state.iSoff = !false
+                this.setState({
+                    seats: this.state.seats, iSoff: !this.state.iSoff
+                })
 
-            this.state.seats[index][i] = 3
-            this.state.iSoff = !false
-            this.setState({
-                seats: this.state.seats, iSoff: !this.state.iSoff
-            })
+                this.totalprice()
+            } else { alert('最多限购5张') }
 
-            this.totalprice()
-            console.log(this.state.totalprice)
+            // console.log(this.state.totalprice)
         }
         // 取消选座
         if (this.state.seats[index][i] == 3 && !this.state.iSoff) {
@@ -111,7 +117,7 @@ class Schedule extends Component {
 
             // 让手机号码显示
 
-            console.log(this.state.totalprice)
+            // console.log(this.state.totalprice)
         }
         if (this.state.totalprice != 0) {
             this.refs.phone.style.display = 'block'
@@ -121,7 +127,7 @@ class Schedule extends Component {
 
     }
     async  componentDidMount() {
-        console.log(this.props)
+        // console.log(this.props)
         let num = this.props.location.pathname.lastIndexOf("/")
         let str = this.props.location.pathname.slice(num + 1)
         let arr = str.split('&')
@@ -133,8 +139,7 @@ class Schedule extends Component {
         //    播放时间
         let data2 = await Api.get('http://localhost:1908/cinema/showtime1', { _id: id2 })
         this.state.language = data2.data[0]
-        this.setState({ showtime1: data2.data[0], filmname: arr[2], screenname: data2.data[0].hallName, language: data2.data[0] })
-        // console.log('data2', data2)
+        this.setState({ showtime1: data2.data[0], filmname: arr[3], screenname: data2.data[0].hallName, language: data2.data[0] })
         let date = new Date(data2.data[0].showAt * 1000)
         // 月
         let M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1)
@@ -146,18 +151,47 @@ class Schedule extends Component {
         let hour = h + ':' + m
         let month = M + '月' + D + '日'
         console.log('data2', data2)
+        console.log('data1', data1)
         this.state.hour = hour
         this.setState({ hour, month })
-        console.log(JSON.parse(data2.data[0].seat))
-        this.setState({ seats: JSON.parse(data2.data[0].seat) })
+        // 让座位被选中没有提交订单的变为空座位
+        let seatarr = JSON.parse(data2.data[0].seat)
+
+        seatarr.forEach((e, i) => {
+            e.forEach(async (item, index) => {
+                if (item == 3) {
+                    seatarr[i][index] = 1
+                    let data = await Api.patch('http://localhost:1908/cinema/upseat', { _id: this.state.language._id, seat: JSON.stringify(seatarr) })
+                    // console.log(seatarr)
+
+                }
+            })
+        })
+        // console.log(seatarr)
+        this.setState({ seats: seatarr })
+        // 设置要传的id
+        let id = id1 + '&' + id2 + '&' + arr[2]
+        this.setState({ id: id })
+
+
 
     }
+    // 返回上一级
     back = () => {
         this.props.history.go(-1)
     }
     // 跳转订单
     gotoorder = () => {
+        // console.log(this.state.language._id)
+        this.state.seats.forEach((e, i) => {
+            e.forEach(async (item, index) => {
+                if (item == 3) {
+                    let data = await Api.patch('http://localhost:1908/cinema/upseat', { _id: this.state.language._id, seat: JSON.stringify(this.state.seats) })
 
+                    this.props.history.push(`/orderlist/${this.state.id}`)
+                }
+            })
+        })
     }
 
     render() {

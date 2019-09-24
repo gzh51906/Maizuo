@@ -15,6 +15,7 @@ import Cinema from '~/cinema/Cinema';
 import Information from '~/information/Information';
 import Cinemadetail from './pages/cinemadetail/Cinemadetail'
 import Schedule from './pages/schedule/Schedule'
+import Orderlist from './pages/orderlist/Orderlist'
 
 import "./style/common.css"
 import { log } from 'util';
@@ -48,6 +49,8 @@ class App extends Component {
                             <Route path="/cinemadetail/:id" component={Cinemadetail} />
                             {/* 选座页面 */}
                             <Route path="/schedule/:id" component={Schedule} />
+                            {/* 订单列表 */}
+                            <Route path="/orderlist/:id" component={Orderlist} />
                             {/* 登陆注册 */}
                             {/* <Route path="/login" component={Login} /> */}
                             {/* <Route path="/reg" component={Reg} /> */}

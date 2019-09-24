@@ -1,0 +1,465 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.orderlist {
+    .header {
+        // position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 44px;
+        line-height: 44px;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+        background-color: #fff;
+        display: flex;
+
+        .header-left {
+            min-width: 15%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-left: 15px;
+
+            img {
+                width: 11px;
+                height: 18px;
+            }
+        }
+
+        .header-title {
+            text-align: center;
+            font-size: 17px;
+            color: #191a1b;
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .header-right {
+            width: 15%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+
+            .restTime {
+                color: #ff5f16;
+                font-size: 13px;
+            }
+        }
+    }
+
+    .decorate {
+        width: 100%;
+        height: 5px;
+        position: relative;
+
+        img {
+            width: 100%;
+            position: absolute;
+            top: 0;
+        }
+    }
+
+    .info-input {
+        height: 75px;
+        display: flex;
+        padding: 17px 0;
+        background: #fff;
+        margin-bottom: 10px;
+
+        i {
+            font-size: 25px;
+            color: rgb(189, 192, 197);
+            display: flex;
+            margin: 0 4px 0 11px;
+            align-items: center;
+        }
+
+
+        .phone {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            .main-info {
+                font-size: 18px;
+                color: #191a1b;
+            }
+
+            .phone-tip {
+                font-size: 11px;
+                color: #bdc0c5;
+            }
+        }
+    }
+
+    .group {
+        background-color: #fff;
+        margin-bottom: 10px;
+
+        .product {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            padding-left: 15px;
+            overflow: hidden;
+
+            .photo {
+                margin: 15px 2.7vw 15px 0;
+                background-color: #f8f8f8;
+                height: 117px;
+
+                img {
+                    width: 22.7vw;
+                    height: 31.2vw;
+                    background-color: #f8f8f8;
+                }
+            }
+
+            .product-info {
+                padding: 15px 15px 15px 0;
+                height: 147px;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+
+                .film-name {
+                    font-size: 15px;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                }
+
+                .film-time {
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    font-size: 13px;
+                    color: #797d82;
+                }
+
+                .film-cinema {
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    font-size: 13px;
+                    color: #797d82;
+                }
+
+                .film-seat {
+                    white-space: normal;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    font-size: 13px;
+                    color: #797d82;
+
+                    span {
+                        white-space: normal;
+                        font-size: 13px;
+                        color: #797d82;
+                    }
+                }
+
+                .num {
+                    color: #bdc0c5;
+                    position: absolute;
+                    bottom: 15px;
+                    right: 15px;
+                }
+
+                .price {
+                    font-size: 15px;
+                    color: #ff5f16;
+                    position: absolute;
+                    bottom: 15px;
+
+                    .price-fmt {
+                        font-size: 15px;
+                        color: #ff5f16;
+                        height: 0 !important;
+                        display: inline-table !important;
+
+                        i {
+                            font-size: 11px;
+                            font-style: normal;
+                        }
+
+                        .interge {
+                            font-size: 15px;
+                        }
+
+                        .decimal {
+                            font-size: 10px;
+                        }
+
+
+                    }
+
+                    .film-tip {
+                        font-size: 11px;
+                        color: #bdc0c5;
+                    }
+                }
+            }
+        }
+
+        .product-price {
+            font-size: 13px;
+            padding: 12px 15px;
+
+            .price-item {
+                color: #797d82;
+
+                .price-font {
+                    color: #ff5f16;
+                    float: right;
+
+                    .price-fmt {
+                        font-size: 15px;
+                        color: #ff5f16;
+                        height: 0 !important;
+                        display: inline-table !important;
+
+                        i {
+                            font-size: 11px;
+                            font-style: normal;
+                        }
+
+                        .interge {
+                            font-size: 15px;
+                        }
+
+                        .decimal {
+                            font-size: 10px;
+                        }
+
+
+                    }
+                }
+            }
+        }
+    }
+
+    .coupon {
+        background-color: #fff;
+        margin-bottom: 10px;
+
+        .card {
+            font-size: 15px;
+            height: 50px;
+            line-height: 50px;
+            border-bottom: none;
+            clear: both;
+            padding-left: 15px;
+            position: relative;
+            overflow: hidden;
+
+            .card-right {
+                float: right;
+                margin-right: 24px;
+                font-size: 14px;
+                color: #191a1b;
+
+                span {
+                    font-size: 14px;
+                    color: #191a1b;
+                }
+            }
+
+            .card-left {
+                float: left;
+
+                span {
+                    margin-left: 7px;
+                    float: right;
+                }
+
+                img {
+                    margin-right: 15px;
+                    vertical-align: text-top;
+                    width: 20px;
+                }
+            }
+        }
+
+        .card::after {
+            content: " ";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            height: 1px;
+            border-bottom: 1px solid #ededed;
+            color: #ededed;
+            transform: scaleY(.5);
+            transform-origin: 0 100%;
+        }
+
+        .balance {
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            height: 49px;
+            justify-content: space-between;
+
+            .balance-info {
+                display: flex;
+                align-items: center;
+
+                img {
+                    width: 20px;
+                    height: 20px;
+                    margin-right: 12px;
+                }
+
+                .balance-name {
+                    font-size: 15px;
+
+                    .balance-text {
+                        font-size: 13px;
+                    }
+
+                    .price-fmt {
+                        font-size: 15px;
+                        color: #ff5f16;
+                        height: 0 !important;
+                        display: inline-table !important;
+
+                        i {
+                            font-size: 11px;
+                            font-style: normal;
+                        }
+
+                        .interge {
+                            font-size: 15px;
+                        }
+
+                        .decimal {
+                            font-size: 10px;
+                        }
+
+
+                    }
+                }
+            }
+
+            .balance-option {
+                display: flex;
+                align-items: center;
+                font-size: 13px;
+
+                img {
+                    width: 17px;
+                    height: 17px;
+                    margin-left: 15px;
+                }
+            }
+        }
+    }
+
+    .tips {
+        border-radius: 8px;
+        background-color: #fff;
+        width: 93%;
+        margin: 16px auto;
+
+        ul {
+            margin: 0;
+            font-size: 14px;
+            line-height: 25px;
+            padding: 12px 15px;
+            list-style: none;
+            color: #a06b43;
+
+            .tips-header {
+                font-size: 15px;
+                display: flex;
+
+                .tips_icon {
+                    font-size: 15px;
+                    margin-right: 5px;
+                }
+            }
+
+            li {
+                display: flex;
+
+                .start {
+                    padding-right: 5px;
+                }
+            }
+        }
+    }
+
+    .pay {
+        background-color: #fff;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        font-size: 15px;
+        border-top: 1px solid #ededed;
+        height: 50px;
+
+        .to-pay {
+            margin-left: 15px;
+            width: 95px;
+            background-color: #ff5f16;
+            color: #fff;
+            text-align: center;
+            float: right;
+            display: inline-block;
+            height: 50px;
+            line-height: 50px;
+        }
+
+        .need-pay {
+            color: #ff5f16;
+            font-size: 15px;
+            float: right;
+            display: inline-block;
+            height: 50px;
+            line-height: 50px;
+
+            span {
+
+
+                .price-fmt {
+                    font-size: 15px;
+                    color: #ff5f16;
+                    height: 0 !important;
+                    display: inline-table !important;
+
+                    i {
+                        font-size: 11px;
+                        font-style: normal;
+                    }
+
+                    .interge {
+                        font-size: 15px;
+                    }
+
+                    .decimal {
+                        font-size: 10px;
+                    }
+
+
+                }
+            }
+        }
+
+        .pay-text {
+            float: right;
+            display: inline-block;
+            height: 50px;
+            line-height: 50px;
+        }
+    }
+}
