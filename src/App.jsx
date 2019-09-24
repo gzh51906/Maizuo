@@ -17,6 +17,8 @@ import FilmDetail from '~/filmDetail/filmDetail';
 import Setting from '~/user/Setting';
 import User from '~/user/User';
 import Order from '~/user/component/order';
+import Cinemadetail from './pages/cinemadetail/Cinemadetail'
+import Schedule from './pages/schedule/Schedule'
 
 import "./style/common.css"
 
@@ -55,6 +57,10 @@ class App extends Component {
                             {/* 设置 */}
                             <Route path="/user" component={User} />
 
+                            {/* 电影院详情 */}
+                            <Route path="/cinemadetail/:id" component={Cinemadetail} />
+                            {/* 选座页面 */}
+                            <Route path="/schedule/:id" component={Schedule} />
                             {/* 登陆注册 */}
                             {/* <Route path="/login" component={Login} /> */}
                             {/* <Route path="/reg" component={Reg} /> */}

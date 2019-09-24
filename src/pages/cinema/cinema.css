@@ -119,6 +119,7 @@
 .cinema .list ul {
   padding: 0;
   margin: 0;
+  margin-bottom: 45px;
 }
 
 .cinema .list ul li {
