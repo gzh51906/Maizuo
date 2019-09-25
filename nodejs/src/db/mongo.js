@@ -58,6 +58,11 @@ exports.update = async (colName, query, data) => {
     // query: 查询条件
     // data: 更新的数据
     let { db, client } = await connect();
+    if (query._id) {
+
+        query._id = ObjectId(query._id);
+
+    }
 
     //  获取集合
     let collection = db.collection(colName);

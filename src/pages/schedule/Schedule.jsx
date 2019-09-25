@@ -16,7 +16,7 @@ class Schedule extends Component {
         moveY: 0,
         // 0代表这个没有位置，1代表空位，2代表已经被人订了，3代表自己预定
         seats: [],
-        // seat: [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,], [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1], [0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1, 1, 0, 0, 0, 0], [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1], [2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2]],
+
         // 取消选座
         iSoff: false,
         totalprice: 0,
@@ -33,8 +33,7 @@ class Schedule extends Component {
         // 语言
         language: {},
         id: '',
-        // 数量
-        qty: 0
+
 
 
     }
@@ -91,18 +90,27 @@ class Schedule extends Component {
         }
 
         if (this.state.seats[index][i] == 1) {
-            this.state.qty += 1
+
             // 让手机号码显示
             // 让用户控制购票数量为5张
-            if (this.state.qty <= 5) {
+            let qty = 0
+            this.state.seats.forEach((a, b) => {
+                a.forEach((c, d) => {
+                    if (c == 3) {
+                        qty += 1
+                    }
+                })
+            })
+            if (qty < 5) {
                 this.state.seats[index][i] = 3
                 this.state.iSoff = !false
                 this.setState({
                     seats: this.state.seats, iSoff: !this.state.iSoff
                 })
+            } else { alert("每人限购5张") }
 
-                this.totalprice()
-            } else { alert('最多限购5张') }
+
+            this.totalprice()
 
             // console.log(this.state.totalprice)
         }

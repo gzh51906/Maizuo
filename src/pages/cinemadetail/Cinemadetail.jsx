@@ -10,22 +10,31 @@ import { Carousel, WingBlank } from 'antd-mobile';
 
 class Cinemadetail extends Component {
     state = {
-        data: ['../../asset/img/p.jpg', '../../asset/img/z.jpg', '../../asset/img/w.jpg', '../../asset/img/x.jpg', '../../asset/img/l.jpg', '../../asset/img/y.jpg', '../../asset/img/zx.jpg', '../../asset/img/j.jpg', '../../asset/img/xx.jpg', '../../asset/img/m.jpg', '../../asset/img/f.jpg'],
+        // 所有影片图片
+        data: [],
 
         slideIndex: 0,
         // 标签时间
         date: [],
         film: {},
+        // 所有演员信息
+        allactors: [],
+        // 当前选中影片演员
         actors: "",
         // 影院信息
-        cinema: "",
+        cinema: {},
         showtime: [],
         // 选者场次的时间
         selecttime: '',
-
         language: '',
         // 选中的影片id
         filmId: "",
+
+        // 所有影片信息
+        allfilm: [],
+        // 选中的影片所有信息
+        actfilm: {},
+
 
 
 
@@ -35,16 +44,35 @@ class Cinemadetail extends Component {
 
     }
     async componentDidMount() {
+        // 影片信息
+        let allfilm = await Api.get('http://localhost:1908/cinema/film', {})
+        console.log(allfilm)
 
+        // 影片的图片
+        let srcarr = []
+        // 演员
+        let act = []
+        allfilm.data.forEach((item, i) => {
+            let arr = []
+            arr.push(item.director + " | ")
+            srcarr.push(item.poster)
+
+            JSON.parse(item.actors).forEach((e, index) => {
+                arr.push(e.name)
+            })
+
+            act.push(arr)
+        })
+
+
+        this.setState({ allfilm: allfilm.data, data: srcarr, actors: act[0].join(''), actfilm: allfilm.data[0], allactors: act })
 
         // 影院信息
         let data = await Api.get('http://localhost:1908/cinema/id', { _id: this.props.match.params.id })
-        // console.log("data", data)
+
         this.setState({ cinema: data.data[0] })
         var date = new Date()
         // 月
-
-
         let arr = []
         this.setState({ month: date.getMonth() + 1 })
         for (var i = 0; i < 7; i++) {
@@ -59,19 +87,10 @@ class Cinemadetail extends Component {
         this.setState({ date: arr, selecttime: arr[0] })
 
 
-        this.props.getFilm()
-        setTimeout(() => {
-            this.state.film = this.props.filmlist[0]
-            // console.log(this.props.filmlist[0])
-            this.setState({ film: this.props.filmlist[0], })
-            // console.log(this.state.film)
-            let arr = JSON.parse(this.props.filmlist[0].actors).map((item) => { return '|' + item.name }).join("")
-            this.state.actors = arr
-            this.setState({ actors: arr })
-        }, 2500)
-        // 请求播放时间
+
+        //   请求影厅的数据
         let show = await Api.get('http://localhost:1908/cinema/showtime', {})
-        console.log("1111", show)
+
         this.state.showtime = show.data
         this.setState({
             showtime: show.data
@@ -81,15 +100,9 @@ class Cinemadetail extends Component {
     }
 
     slideshow = (i) => {
-        // console.log(i, this.props.filmlist[i])
-        setTimeout(() => {
-            this.setState({ film: this.props.filmlist[i] })
-            // console.log(JSON.parse(this.state.film.actors))
 
-            let arr = JSON.parse(this.props.filmlist[i].actors).map((item) => { return '|' + item.name }).join("")
-            // this.setState({ actors: arr })
-            // console.log(this.state.filmId)
-        }, 100)
+        this.setState({ actfilm: this.state.allfilm[i], actors: this.state.allactors[i] })
+
 
     }
     // 日期选项卡
@@ -99,10 +112,10 @@ class Cinemadetail extends Component {
     }
     //路由跳转
     goto = (id2) => {
-        // this.props.history.push({ pathname: path, query: { filmname: this.state.film.name, time: this.state.selecttime, showtime: '09: 45', cinema: this.state.cinema.name } })
+
         let id1 = this.props.match.params.id
-        let id = id1 + "&" + id2 + "&" + this.state.film._id + "&" + this.state.film.name
-        console.log(id)
+        let id = id1 + "&" + id2 + "&" + this.state.actfilm._id + "&" + this.state.actfilm.name
+
         this.props.history.push(`/schedule/${id}`)
     }
 
@@ -151,7 +164,6 @@ class Cinemadetail extends Component {
                                     style={{
                                         width: '72px',
                                         height: "104px",
-
                                         display: 'block',
                                         position: 'relative',
                                         top: this.state.slideIndex === index ? -10 : 0,
@@ -183,11 +195,11 @@ class Cinemadetail extends Component {
                 </div>
                 <div className='film-info'>
                     <div className="film-header">
-                        <span className="film-name">{this.state.film.name}</span>
-                        <span className="film-score">{this.state.film.grade}</span>
+                        <span className="film-name">{this.state.actfilm.name}</span>
+                        <span className="film-score">{this.state.actfilm.grade}</span>
                         <span className="film-unit">分</span>
                     </div>
-                    <div className="film-desc">{this.state.film.category} | {this.state.film.runtime}分钟{this.state.actors}</div>
+                    <div className="film-desc">{this.state.actfilm.category} | {this.state.actfilm.runtime}分钟|{this.state.actors}</div>
                     <img src={'../../asset/img/right.png'} alt="" />
                 </div>
                 <div className="tabs-bar">
@@ -229,21 +241,21 @@ class Cinemadetail extends Component {
 
 let mapStateToProps = function (state) {
     return {
-        filmlist: state.cinema.filmlist,
-        actfilm: state.cinema.actfilm,
+        // filmlist: state.cinema.filmlist,
+        // actfilm: state.cinema.actfilm,
 
     }
 }
 
 let mapDispatchToProps = function (dispatch) {
     return {
-        getFilm() {
+        // getFilm() {
 
-            dispatch({ type: 'GET_FILM' })
-        },
-        actFilm(index) {
-            dispatch({ type: 'act_film', index })
-        }
+        //     dispatch({ type: 'GET_FILM' })
+        // },
+        // actFilm(index) {
+        //     dispatch({ type: 'act_film', index })
+        // }
 
     }
 }
