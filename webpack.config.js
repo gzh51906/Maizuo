@@ -40,6 +40,10 @@ module.exports = {
                     loader: 'babel-loader',
                     options: {
                         presets: ['@babel/preset-react'],
+                        // plugins: [
+                        //     ["import", { "libraryName": "antd-mobile", "style": "css" }], // `style: true` 会加载 less 文件
+                        //     "transform-decorators-legacy"
+                        // ],
                         plugins: [
                             ["import", {
                                 "libraryName": "antd",
@@ -49,11 +53,6 @@ module.exports = {
                             ['@babel/plugin-proposal-decorators', { legacy: true }],
                             '@babel/plugin-proposal-class-properties',
                         ],
-                        // plugins: [
-                        //     ["import", { "libraryName": "antd-mobile", "style": "css" }],
-                        //     ['@babel/plugin-proposal-decorators', { legacy: true }],
-                        //     '@babel/plugin-proposal-class-properties', // `style: true` 会加载 less 文件
-                        // ]
                     }
                 },
                 // 简写
@@ -65,7 +64,6 @@ module.exports = {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader']
             },
-
             {
                 test: /\.scss$/,
                 use: ['style-loader', 'css-loader', 'sass-loader']

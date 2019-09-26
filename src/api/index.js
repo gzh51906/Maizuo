@@ -51,8 +51,12 @@ let getReadyFilm = async (params) => {
 
 
 
-let post = () => {
+let login = async (value, params) => {
+    let { phone, password } = value;
+    console.log(phone, password);
 
+    let { data } = await axios.post("http://localhost:1908/user/login", { phone, password }, params)
+    return data
 }
 
 
@@ -92,7 +96,7 @@ let getflimdetail = async (filmId, params) => {
 
 export default {
     get,
-    post,
+    login,
     patch,
     delete: remove,
     cinema,

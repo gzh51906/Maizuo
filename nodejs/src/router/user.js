@@ -13,7 +13,7 @@ Router.post('/regcheck', async (req, res) => {
     let datacheck, datareg
 
     //验证用户是否存在
-    datacheck = await find('users', { phone });//{phone}
+    datacheck = await find('user', { phone });//{phone}
     datacheck = datacheck[0];
 
     //生成token，并返回前端
@@ -32,20 +32,16 @@ Router.post('/regcheck', async (req, res) => {
 
     } else {
         //用户不存在，注册用户
-        await insert('users', { phone });
+        await insert('user', { phone });
 
         //获取用户信息返回
-        datareg = await find('users', { phone });
+        datareg = await find('user', { phone });
         datareg = datareg[0]
-
-        console.log("----++++++");
-        console.log(datareg);
-
 
         res.send(formatData({
             code: 1,
             data: {
-                _id: datacheck._id,
+                _id: datareg._id,
                 phone: datareg.phone,
                 authorization
             }
@@ -55,7 +51,39 @@ Router.post('/regcheck', async (req, res) => {
 
 })
 
+//验证登录及密码 
+Router.post('/login', async (req, res) => {
+    let { phone, password } = req.body;
+    console.log(phone, password, 123444);
+    let data
+    try {
+        //使用查找方法，查询数据库
+        data = await find('user', { phone });
+        //返回的data是一个数据，所以只需要获取第一个索引值就行了
+        data = data[0]
+        console.log(data);
 
+
+        //生成token，并返回前端
+        let authorization = token.create(phone);
+
+        if (data) {
+
+            let { _id, phone, avatar, nickname, orderlist } = data
+            if (data.password == password) {
+                res.send(formatData({ data: { _id, phone, authorization, avatar, nickname, orderlist } }))
+            } else {
+                res.send(formatData({ code: 0, data: { phone } }))
+            }
+            //返回数据，返回id，username
+        } else {
+            //登陆失败就添加code=0
+            res.send(formatData({ code: 0 }))
+        }
+    } catch (err) {
+        res.send(formatData({ code: 0 }))
+    }
+})
 
 // 增：注册用户
 Router.post('/reg', async (req, res) => {
@@ -96,31 +124,7 @@ Router.get('/check', async (req, res) => {
     }
 })
 
-//验证登录及密码 
-Router.post('/login', async (req, res) => {
-    let { phone } = req.body;
-    let data
-    try {
-        //使用查找方法，查询数据库
-        data = await find('users', { phone });
-        //返回的data是一个数据，所以只需要获取第一个索引值就行了
-        data = data[0]
-        console.log(data);
 
-        //生成token，并返回前端
-        let authorization = token.create(phone);
-
-        if (data) {
-            res.send(formatData({ data: { _id: data._id, phone: data.phone, authorization } }))
-            //返回数据，返回id，username
-        } else {
-            //登陆失败就添加code=0
-            res.send(formatData({ code: 0 }))
-        }
-    } catch (err) {
-        res.send(formatData({ code: 0 }))
-    }
-})
 
 // 删
 Router.delete('/:id', (req, res) => {

@@ -47,6 +47,33 @@ function* film() {
     // console.log(data)
     yield put({ type: 'get_film', data })
 }
+
+//获取登录状态
+function* loginstate({ values }) {
+
+    const { data, code } = yield call(Api.login.bind(null, values));
+    yield put({ type: 'start_login' })
+    console.log(data);
+
+    if (code === 1) {
+        window.localStorage.setItem('authorization', data.authorization)
+        window.localStorage.setItem('userInfo', JSON.stringify(data))
+        yield put({ type: 'login_success', data })
+    } else {
+        window.localStorage.removeItem('authorization')
+        window.localStorage.removeItem('userInfo')
+        yield put({ type: 'login_failed' })
+
+    }
+}
+
+function* logout() {
+    window.localStorage.removeItem('authorization')
+    window.localStorage.removeItem('userInfo')
+    yield put({ type: 'login_failed' })
+}
+
+
 function* rootSaga() {
     yield takeLatest("CHANGE_QTY_ASYNC", getKucun)
     yield takeLatest("GET_CINEMA", getcinema)
@@ -55,7 +82,8 @@ function* rootSaga() {
     yield takeLatest("ADD_RODER", addorder)
     yield takeLatest("GET_ADDRESS", address)
     yield takeLatest("GET_FILM", film)
-
+    yield takeLatest("START_LOGIN", loginstate)
+    yield takeLatest("LOGIN_FAILED", logout)
 }
 
 export default rootSaga;

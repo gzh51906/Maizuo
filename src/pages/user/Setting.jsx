@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import { Button, Row, Col } from 'antd';
 
+import { connect } from 'react-redux'
+
 import "./setting.css";
 import { log } from 'util';
 
@@ -12,6 +14,8 @@ class Setting extends Component {
     logout = () => {
         console.log("退出登录");
 
+        this.props.logout()
+
     }
     ugoto = () => {
         this.props.history.goBack();
@@ -21,7 +25,7 @@ class Setting extends Component {
         return (
             <div className="setting">
                 <Row
-                    className='s        _header'
+                    className='s_header'
                 >
                     <div className="left"
                         onClick={this.ugoto}
@@ -87,5 +91,22 @@ class Setting extends Component {
         )
     }
 }
+
+let mapStateToProps = function (state) {
+    // 需要映射什么到Cart组件的props就return什么出去
+    return {
+        logindata: state.user,
+    }
+}
+
+let mapDispatchToProps = function (dispatch) {
+    return {
+        logout() {
+            dispatch({ type: "LOGIN_FAILED" })
+        }
+    }
+}
+
+Setting = connect(mapStateToProps, mapDispatchToProps)(Setting);
 
 export default Setting;

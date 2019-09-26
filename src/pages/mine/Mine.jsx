@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
-import { Carousel, Button, Menu, Row, Col } from 'antd';
+import { Button, Menu, Row, Col } from 'antd';
+
+import { connect } from 'react-redux'
 
 import ComponentButtom from "../../component/ComponentButtom/ComponentButtom"
 
@@ -39,12 +41,20 @@ class Mine extends React.Component {
                 path: "/setting",
                 src: "../../asset/mineimg/setting.png"
             }
-        ]
+        ],
+        avatar: "",
+        nickname: ""
     };
-
+    componentDidMount() {
+        let { nickname, avatar } = JSON.parse(window.localStorage.getItem('userInfo'))
+        this.setState({
+            avatar,
+            nickname
+        })
+    }
     ligoto = (path, e) => {
         console.log(path);
-
+        console.log(this.props, 123123);
         e.stopPropagation();
         this.props.history.push(path)
     }
@@ -54,13 +64,16 @@ class Mine extends React.Component {
     }
 
     render() {
-
+        // let { nickname, avatar } = this.props.logindata
+        // console.log(this.props);
 
         return (
             <div className="mine">
                 <Row className='m_header'>
-                    <img src="https://mall.s.maizuo.com/4f0b29878f62f5e298a89a4654f0e8f0.jpg" alt="" onClick={this.setinfo} />
-                    <div className="m_h_name" onClick={this.setinfo}>手机号码123456789</div>
+                    <img src={this.state.avatar ? this.state.avatar : "https://mall.s.maizuo.com/4f0b29878f62f5e298a89a4654f0e8f0.jpg"} alt="" onClick={this.setinfo} />
+                    <div className="m_h_name" onClick={this.setinfo}>
+                        {this.state.nickname}
+                    </div>
                 </Row>
                 <Row className='m_order'>
                     <ul>
@@ -95,5 +108,18 @@ class Mine extends React.Component {
     }
 }
 
+let mapStateToProps = function (state) {
+    // 需要映射什么到Cart组件的props就return什么出去
+    return {
+        logindata: state.user,
+    }
+}
+
+let mapDispatchToProps = function (dispatch) {
+    return {
+    }
+}
+
+Mine = connect(mapStateToProps, mapDispatchToProps)(Mine);
 
 export default Mine;
