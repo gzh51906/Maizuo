@@ -1,0 +1,496 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.orderlist .header {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 44px;
+  line-height: 44px;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  display: flex;
+}
+
+.orderlist .header .header-left {
+  min-width: 15%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 15px;
+}
+
+.orderlist .header .header-left img {
+  width: 11px;
+  height: 18px;
+}
+
+.orderlist .header .header-title {
+  text-align: center;
+  font-size: 17px;
+  color: #191a1b;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.orderlist .header .header-right {
+  width: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.orderlist .header .header-right .restTime {
+  color: #ff5f16;
+  font-size: 13px;
+}
+
+.orderlist .decorate {
+  width: 100%;
+  height: 5px;
+  position: relative;
+}
+
+.orderlist .decorate img {
+  width: 100%;
+  position: absolute;
+  top: 0;
+}
+
+.orderlist .info-input {
+  height: 75px;
+  display: flex;
+  padding: 17px 0;
+  background: #fff;
+  margin-bottom: 10px;
+}
+
+.orderlist .info-input i {
+  font-size: 25px;
+  color: #bdc0c5;
+  display: flex;
+  margin: 0 4px 0 11px;
+  align-items: center;
+}
+
+.orderlist .info-input .phone {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.orderlist .info-input .phone .main-info {
+  font-size: 18px;
+  color: #191a1b;
+}
+
+.orderlist .info-input .phone .phone-tip {
+  font-size: 11px;
+  color: #bdc0c5;
+}
+
+.orderlist .group {
+  background-color: #fff;
+  margin-bottom: 10px;
+}
+
+.orderlist .group .product {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  padding-left: 15px;
+  overflow: hidden;
+}
+
+.orderlist .group .product .photo {
+  margin: 15px 2.7vw 15px 0;
+  background-color: #f8f8f8;
+  height: 117px;
+}
+
+.orderlist .group .product .photo img {
+  width: 22.7vw;
+  height: 31.2vw;
+  background-color: #f8f8f8;
+}
+
+.orderlist .group .product .product-info {
+  padding: 15px 15px 15px 0;
+  height: 147px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.orderlist .group .product .product-info .film-name {
+  font-size: 15px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.orderlist .group .product .product-info .film-time {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 13px;
+  color: #797d82;
+}
+
+.orderlist .group .product .product-info .film-cinema {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 13px;
+  color: #797d82;
+}
+
+.orderlist .group .product .product-info .film-seat {
+  white-space: normal;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 13px;
+  color: #797d82;
+}
+
+.orderlist .group .product .product-info .film-seat span {
+  white-space: normal;
+  font-size: 13px;
+  color: #797d82;
+}
+
+.orderlist .group .product .product-info .num {
+  color: #bdc0c5;
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+}
+
+.orderlist .group .product .product-info .price {
+  font-size: 15px;
+  color: #ff5f16;
+  position: absolute;
+  bottom: 15px;
+}
+
+.orderlist .group .product .product-info .price .price-fmt {
+  font-size: 15px;
+  color: #ff5f16;
+  height: 0 !important;
+  display: inline-table !important;
+}
+
+.orderlist .group .product .product-info .price .price-fmt i {
+  font-size: 11px;
+  font-style: normal;
+}
+
+.orderlist .group .product .product-info .price .price-fmt .interge {
+  font-size: 15px;
+}
+
+.orderlist .group .product .product-info .price .price-fmt .decimal {
+  font-size: 10px;
+}
+
+.orderlist .group .product .product-info .price .film-tip {
+  font-size: 11px;
+  color: #bdc0c5;
+}
+
+.orderlist .group .product-price {
+  font-size: 13px;
+  padding: 12px 15px;
+}
+
+.orderlist .group .product-price .price-item {
+  color: #797d82;
+}
+
+.orderlist .group .product-price .price-item .price-font {
+  color: #ff5f16;
+  float: right;
+}
+
+.orderlist .group .product-price .price-item .price-font .price-fmt {
+  font-size: 15px;
+  color: #ff5f16;
+  height: 0 !important;
+  display: inline-table !important;
+}
+
+.orderlist .group .product-price .price-item .price-font .price-fmt i {
+  font-size: 11px;
+  font-style: normal;
+}
+
+.orderlist .group .product-price .price-item .price-font .price-fmt .interge {
+  font-size: 15px;
+}
+
+.orderlist .group .product-price .price-item .price-font .price-fmt .decimal {
+  font-size: 10px;
+}
+
+.orderlist .coupon {
+  background-color: #fff;
+  margin-bottom: 10px;
+}
+
+.orderlist .coupon .card {
+  font-size: 15px;
+  height: 50px;
+  line-height: 50px;
+  border-bottom: none;
+  clear: both;
+  padding-left: 15px;
+  position: relative;
+  overflow: hidden;
+}
+
+.orderlist .coupon .card .card-right {
+  float: right;
+  margin-right: 24px;
+  font-size: 14px;
+  color: #191a1b;
+}
+
+.orderlist .coupon .card .card-right span {
+  font-size: 14px;
+  color: #191a1b;
+}
+
+.orderlist .coupon .card .card-left {
+  float: left;
+}
+
+.orderlist .coupon .card .card-left span {
+  margin-left: 7px;
+  float: right;
+}
+
+.orderlist .coupon .card .card-left img {
+  margin-right: 15px;
+  vertical-align: text-top;
+  width: 20px;
+}
+
+.orderlist .coupon .card::after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 1px;
+  border-bottom: 1px solid #ededed;
+  color: #ededed;
+  transform: scaleY(0.5);
+  transform-origin: 0 100%;
+}
+
+.orderlist .coupon .balance {
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  height: 49px;
+  justify-content: space-between;
+}
+
+.orderlist .coupon .balance .balance-info {
+  display: flex;
+  align-items: center;
+}
+
+.orderlist .coupon .balance .balance-info img {
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+}
+
+.orderlist .coupon .balance .balance-info .balance-name {
+  font-size: 15px;
+}
+
+.orderlist .coupon .balance .balance-info .balance-name .balance-text {
+  font-size: 13px;
+}
+
+.orderlist .coupon .balance .balance-info .balance-name .price-fmt {
+  font-size: 15px;
+  color: #ff5f16;
+  height: 0 !important;
+  display: inline-table !important;
+}
+
+.orderlist .coupon .balance .balance-info .balance-name .price-fmt i {
+  font-size: 11px;
+  font-style: normal;
+}
+
+.orderlist .coupon .balance .balance-info .balance-name .price-fmt .interge {
+  font-size: 15px;
+}
+
+.orderlist .coupon .balance .balance-info .balance-name .price-fmt .decimal {
+  font-size: 10px;
+}
+
+.orderlist .coupon .balance .balance-option {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+}
+
+.orderlist .coupon .balance .balance-option img {
+  width: 17px;
+  height: 17px;
+  margin-left: 15px;
+}
+
+.orderlist .tips {
+  border-radius: 8px;
+  background-color: #fff;
+  width: 93%;
+  margin: 16px auto;
+}
+
+.orderlist .tips ul {
+  margin: 0;
+  font-size: 14px;
+  line-height: 25px;
+  padding: 12px 15px;
+  list-style: none;
+  color: #a06b43;
+}
+
+.orderlist .tips ul .tips-header {
+  font-size: 15px;
+  display: flex;
+}
+
+.orderlist .tips ul .tips-header .tips_icon {
+  font-size: 15px;
+  margin-right: 5px;
+}
+
+.orderlist .tips ul li {
+  display: flex;
+}
+
+.orderlist .tips ul li .start {
+  padding-right: 5px;
+}
+
+.orderlist .pay {
+  background-color: #fff;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  font-size: 15px;
+  border-top: 1px solid #ededed;
+  height: 50px;
+}
+
+.orderlist .pay .to-pay {
+  margin-left: 15px;
+  width: 95px;
+  background-color: #ff5f16;
+  color: #fff;
+  text-align: center;
+  float: right;
+  display: inline-block;
+  height: 50px;
+  line-height: 50px;
+}
+
+.orderlist .pay .need-pay {
+  color: #ff5f16;
+  font-size: 15px;
+  float: right;
+  display: inline-block;
+  height: 50px;
+  line-height: 50px;
+}
+
+.orderlist .pay .need-pay span .price-fmt {
+  font-size: 15px;
+  color: #ff5f16;
+  height: 0 !important;
+  display: inline-table !important;
+}
+
+.orderlist .pay .need-pay span .price-fmt i {
+  font-size: 11px;
+  font-style: normal;
+}
+
+.orderlist .pay .need-pay span .price-fmt .interge {
+  font-size: 15px;
+}
+
+.orderlist .pay .need-pay span .price-fmt .decimal {
+  font-size: 10px;
+}
+
+.orderlist .pay .pay-text {
+  float: right;
+  display: inline-block;
+  height: 50px;
+  line-height: 50px;
+}
+
+.orderlist .zhezhao {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: .5;
+  background: #000;
+  z-index: 3;
+}
+
+.orderlist .mint {
+  width: 74.7% !important;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  background: #fff;
+  border-radius: 3px;
+  font-size: 16px;
+  overflow: hidden;
+  backface-visibility: hidden;
+  transition: .2s;
+  z-index: 4;
+}
+
+.orderlist .mint .mint-center {
+  padding: 18px 20px !important;
+  min-height: 36px;
+  color: #000 !important;
+  font-size: 15px !important;
+  margin: 0;
+  text-align: center;
+  line-height: 36px;
+  border-bottom: 1px solid #ededed;
+}
+
+.orderlist .mint .mint-btn {
+  height: 48px !important;
+  line-height: 48px !important;
+  color: #ff5f16 !important;
+  font-size: 14px;
+  line-height: 35px;
+  background-color: #fff;
+  text-align: center;
+}

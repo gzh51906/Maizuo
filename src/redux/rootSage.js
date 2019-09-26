@@ -39,14 +39,6 @@ function* address({ address }) {
     // console.log(data)
     yield put({ type: 'get_address', data })
 }
-// 获取影片信息
-function* film() {
-
-
-    const { data } = yield call(Api.get.bind(null, 'http://localhost:1908/cinema/film'));
-    // console.log(data)
-    yield put({ type: 'get_film', data })
-}
 
 //获取登录状态
 function* loginstate({ values }) {
@@ -73,17 +65,18 @@ function* logout() {
     yield put({ type: 'login_failed' })
 }
 
-
 function* rootSaga() {
     yield takeLatest("CHANGE_QTY_ASYNC", getKucun)
+
     yield takeLatest("GET_CINEMA", getcinema)
     yield takeLatest("ADD_CINEMA", addcinema)
     yield takeLatest("GET_RODER", getorder)
     yield takeLatest("ADD_RODER", addorder)
     yield takeLatest("GET_ADDRESS", address)
-    yield takeLatest("GET_FILM", film)
+
     yield takeLatest("START_LOGIN", loginstate)
     yield takeLatest("LOGIN_FAILED", logout)
+
 }
 
 export default rootSaga;

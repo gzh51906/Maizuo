@@ -60,8 +60,10 @@ let login = async (value, params) => {
 }
 
 
-let patch = () => {
-
+async function patch(url, params) {
+    // console.log(params)
+    let { data } = await axios.patch(url, params)
+    return data
 }
 
 let remove = () => {
