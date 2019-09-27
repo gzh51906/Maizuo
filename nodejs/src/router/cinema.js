@@ -71,7 +71,30 @@ Router.patch('/upseat', async (req, res) => {
     res.send(formatData({ data }))
 })
 
+// 更改用户订单
+Router.patch('/upseat', async (req, res) => {
+    let { _id, seat } = req.body
+    let data = await update('showtime', { _id }, { $set: { seat } })
+    res.send(formatData({ data }))
+})
 
+// 根据ID获取用户订单列表
+Router.get('/usergoods', async (req, res) => {
+    // console.log("--------")
+
+    let { _id } = req.query;
+    console.log({ _id })
+    let data = await find('user', { _id });
+    res.send(formatData({ data }))
+})
+
+// 根据ID更改用户订单
+Router.patch('/upuser', async (req, res) => {
+    let { _id, oderlist } = req.body
+    // console.log({ _id, name, address, districtName, phone, lowPrice, notice })
+    let data = await update('user', { _id }, { $set: { oderlist } })
+    res.send(formatData({ data }))
+})
 
 
 module.exports = Router;

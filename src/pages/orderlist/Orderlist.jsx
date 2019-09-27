@@ -28,7 +28,13 @@ class Orderlist extends Component {
         // 15分钟倒计时
         m: 15,
         s: 0,
-        zhezhao: false
+        zhezhao: false,
+        // 登入的信息
+        userInfo: {},
+        //登入用户里的订单
+        userlist: [],
+
+
 
     }
 
@@ -96,9 +102,23 @@ class Orderlist extends Component {
             }
             this.setState({ m: m, s: s })
         }, 1000)
+
+        // 获取登入的信息
+
+        let userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
+        this.setState({ userInfo: userInfo })
+
+        // 根据id获取登入用户的订单列表
+        let userlist = await Api.get('http://localhost:1908/cinema/usergoods', { _id: this.state.userInfo._id })
+        // console.log(JSON.parse(userlist.data[0].oderlist))
+        this.setState({ userlist: JSON.parse(userlist.data[0].oderlist) })
+        // console.log(this.state.userlist)
+
+
     }
     // 确认订单
     buyticket = async () => {
+        // 把购买的座位变成2已购买
         this.state.cinemaseat.forEach((e, i) => {
             e.forEach((item, index) => {
                 if (item == 3) {
@@ -108,6 +128,16 @@ class Orderlist extends Component {
             })
         })
         let data = await Api.patch('http://localhost:1908/cinema/upseat', { _id: this.state.cinemaT._id, seat: JSON.stringify(this.state.cinemaseat) })
+
+        // 把订单添加到用户列表里
+        let objlist = { name: this.state.film.name, time: this.state.showtime, src: this.state.film.poster, num: this.state.ticketnum, price: this.state.filmPrice, total: this.state.total }
+
+        let arrlist = this.state.userlist
+        arrlist.push(objlist)
+
+        console.log("11", arrlist, objlist)
+        await Api.patch('http://localhost:1908/cinema/upuser', { _id: this.state.userInfo._id, oderlist: JSON.stringify(arrlist) })
+
         alert("支付成功")
     }
 
@@ -124,7 +154,7 @@ class Orderlist extends Component {
                 <div className="info-input">
                     <i> <Icon type="user" /></i>
                     <div className="phone">
-                        <div className='main-info'>13902254175</div>
+                        <div className='main-info'>{this.state.userInfo.phone}</div>
                         <div className='phone-tip'>订单信息将发送到该手机</div>
                     </div>
                 </div>

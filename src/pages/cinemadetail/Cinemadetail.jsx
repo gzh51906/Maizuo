@@ -118,13 +118,16 @@ class Cinemadetail extends Component {
 
         this.props.history.push(`/schedule/${id}`)
     }
+    gotoback = () => {
+        this.props.history.push(`/cinema`)
+    }
 
 
     render() {
 
         return (
             <div className="cinemadetail" onScroll={this.handleScroll}>
-                <div className="heard-left" onClick={this.goto.bind(this, '/cinema')}><img src="../../asset/img/left.png" /> </div>
+                <div className="heard-left" onClick={this.gotoback.bind(this, '/cinema')}><img src="../../asset/img/left.png" /> </div>
 
 
                 <div className="header-title">

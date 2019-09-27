@@ -68,6 +68,10 @@
   height: 70px;
 }
 
+.order .o_lists .list .l_top .img_box img {
+  width: 100%;
+}
+
 .order .o_lists .list .l_top .info_box {
   flex: 1;
   position: relative;
@@ -118,7 +122,8 @@
   word-spacing: -5px;
 }
 
-.order .o_lists .list .l_center .all-count, .order .o_lists .list .l_center .real-pay {
+.order .o_lists .list .l_center .all-count,
+.order .o_lists .list .l_center .real-pay {
   font-size: 13px;
   margin-left: 19px;
   margin-right: 2px;

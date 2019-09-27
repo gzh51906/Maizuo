@@ -96,6 +96,7 @@ let getflimdetail = async (filmId, params) => {
     return data
 }
 
+
 export default {
     get,
     login,

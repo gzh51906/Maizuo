@@ -108,6 +108,11 @@
   padding: 15px 0;
   width: 100%;
   overflow: hidden;
+  background: #DEF1E5;
+}
+
+.cinemadetail .flim .am-carousel-wrap {
+  display: none;
 }
 
 .cinemadetail .flim .space-carousel {

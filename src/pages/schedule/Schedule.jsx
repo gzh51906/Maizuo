@@ -33,6 +33,8 @@ class Schedule extends Component {
         // 语言
         language: {},
         id: '',
+        // 登入的手机号码
+        phone: ''
 
 
 
@@ -135,9 +137,9 @@ class Schedule extends Component {
 
     }
     async  componentDidMount() {
-        // console.log(this.props)
-        let num = this.props.location.pathname.lastIndexOf("/")
-        let str = this.props.location.pathname.slice(num + 1)
+        console.log(this.props)
+        let num = this.props.history.location.pathname.lastIndexOf("/")
+        let str = this.props.history.location.pathname.slice(num + 1)
         let arr = str.split('&')
         let id1 = arr[0];
         let id2 = arr[1];
@@ -180,6 +182,11 @@ class Schedule extends Component {
         // 设置要传的id
         let id = id1 + '&' + id2 + '&' + arr[2]
         this.setState({ id: id })
+
+        // 获取登入者的手机号码
+
+        let userInfo = JSON.parse(window.localStorage.getItem('userInfo'));
+        this.setState({ phone: userInfo.phone })
 
 
 
@@ -240,7 +247,7 @@ class Schedule extends Component {
                         </div>
                     </div>
                 </div>
-                <div className='phone-input' style={{ display: 'none' }} ref='phone'><span>手机号：</span><span>13902254175 </span>
+                <div className='phone-input' style={{ display: 'none' }} ref='phone'><span>手机号：</span><span>{this.state.phone} </span>
                     <img src='../../asset/img/bj.png' /></div>
                 <div className='footer-btn' onClick={this.gotoorder}>{this.state.totalprice === 0 ? "请先选座" : this.state.totalprice + ".00元 确认座位"}</div>
             </div >

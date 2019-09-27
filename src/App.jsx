@@ -40,6 +40,8 @@ class App extends Component {
     render() {
         // console.log(this.props.location.pathname, 111111111);
         let { isLogin } = this.props;
+        console.log(isLogin);
+
         return (
             <div className="index">
                 <Layout style={{ width: '100%' }}>
@@ -72,7 +74,9 @@ class App extends Component {
                             {/* 电影院详情 */}
                             <Route path="/cinemadetail/:id" component={Cinemadetail} />
                             {/* 选座页面 */}
-                            <Route path="/schedule/:id" component={Schedule} />
+                            <Route path="/schedule/:id" component={() => {
+                                return isLogin ? <Schedule history={this.props.history} /> : <Redirect to={{ pathname: "/login" }} />
+                            }} />
                             {/* 订单列表 */}
                             <Route path="/orderlist/:id" component={Orderlist} />
                             {/* 登陆注册 */}

@@ -108,6 +108,11 @@
         padding: 15px 0;
         width: 100%;
         overflow: hidden;
+        background: #DEF1E5;
+
+        .am-carousel-wrap {
+            display: none;
+        }
 
         .space-carousel {
             padding: 16px;
