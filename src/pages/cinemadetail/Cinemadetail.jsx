@@ -121,6 +121,12 @@ class Cinemadetail extends Component {
     gotoback = () => {
         this.props.history.push(`/cinema`)
     }
+    componentWillUnmount() {
+        // 卸载异步操作设置状态
+        this.setState = (state, callback) => {
+            return;
+        }
+    }
 
 
     render() {

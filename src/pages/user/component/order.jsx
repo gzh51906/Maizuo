@@ -16,20 +16,33 @@ class Order extends Component {
 
         // console.log(userInfo, this.state.userInfo)
         let { data } = await Api.get('http://localhost:1908/cinema/usergoods', { _id: userInfo._id })
-        console.log(data[0].oderlist)
+        // console.log(data[0].oderlist)
         this.setState({ userInfo: userInfo, orderlist: JSON.parse(data[0].oderlist) })
     }
 
     goback = () => {
         this.props.history.goBack();
     }
-    cancel = () => {
-        console.log("取消订单", this.state.orderlist);
+    // 取消订单后台删除订单数据
+    cancel = async (i) => {
+        // console.log("取消订单", i, this.state.orderlist, this.state.userInfo.phone);
+        let list = this.state.orderlist.splice(i, 1)
+        this.setState({ orderlist: this.state.orderlist })
+        // console.log(this.state.orderlist)
+        await Api.patch('http://localhost:1908/cinema/uporedelist', { phone: this.state.userInfo.phone, oderlist: JSON.stringify(this.state.orderlist) })
     }
 
     reset = () => {
-        console.log("重新购买");
+        // console.log("重新购买");
+        this.props.history.push({ pathname: `/cinema` })
     }
+    componentWillUnmount() {
+        // 卸载异步操作设置状态
+        this.setState = (state, callback) => {
+            return;
+        }
+    }
+
     render() {
         return (
             <div className="order">
@@ -68,7 +81,7 @@ class Order extends Component {
                                     <span className='count'><i>￥</i> {item.total}</span>
                                 </Row>
                                 <Row className='l_foot'>
-                                    <Col className='cancel' onClick={this.cancel}>
+                                    <Col className='cancel' onClick={this.cancel.bind(this, i)}>
                                         订单取消
                                 </Col>
                                     <Button className="reset" onClick={this.reset}>重新购买</Button>

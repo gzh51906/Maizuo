@@ -36,6 +36,12 @@ class NormalLoginForm extends Component {
             }
         });
     };
+    componentWillUnmount() {
+        // 卸载异步操作设置状态
+        this.setState = (state, callback) => {
+            return;
+        }
+    }
     render() {
         const { getFieldDecorator } = this.props.form;
         // console.log(this.props.history.location.pathname, 2222);

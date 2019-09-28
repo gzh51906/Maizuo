@@ -62,6 +62,12 @@ class Mine extends React.Component {
     setinfo = () => {
         this.props.history.push('/user');
     }
+    componentWillUnmount() {
+        // 卸载异步操作设置状态
+        this.setState = (state, callback) => {
+            return;
+        }
+    }
 
     render() {
         // let { nickname, avatar } = this.props.logindata

@@ -32,10 +32,11 @@ class App extends Component {
 
     }
     componentDidMount() {
-        let data = this.props
+        // let data = this.props
         // console.log(data);
 
     }
+
 
     render() {
         // console.log(this.props.location.pathname, 111111111);
@@ -74,8 +75,9 @@ class App extends Component {
                             {/* 电影院详情 */}
                             <Route path="/cinemadetail/:id" component={Cinemadetail} />
                             {/* 选座页面 */}
-                            <Route path="/schedule/:id" component={() => {
-                                return isLogin ? <Schedule history={this.props.history} /> : <Redirect to={{ pathname: "/login" }} />
+                            <Route path="/schedule/:id" component={(h) => {
+                                // console.log("黎文德", h)
+                                return isLogin ? <Schedule {...h} /> : <Redirect to={{ pathname: "/login" }} />
                             }} />
                             {/* 订单列表 */}
                             <Route path="/orderlist/:id" component={Orderlist} />

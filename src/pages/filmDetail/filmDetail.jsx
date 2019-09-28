@@ -16,16 +16,18 @@ class filmDetail extends Component {
         top: 10
     }
     async componentDidMount() {
-        console.log(this.props);
+        // console.log(this.props);
 
         let { id } = this.props.match.params
+        // console.log(id)
         let { data } = await Api.getflimdetail(id)
-        console.log(data[0]);
-
+        console.log(data[0], 22222);
+        console.log(11111)
         this.setState({
             data: data[0],
             filmTypename: data[0].filmType.name
         })
+
 
     }
     callback(key) {
@@ -39,13 +41,20 @@ class filmDetail extends Component {
         // this.props.history.push('/film')
     }
     goforward = () => {
-        console.log(111111111111);
+        // console.log(111111111111);
 
-        // this.props.history.push('/film')
+        this.props.history.push('/cinema')
+    }
+    componentWillUnmount() {
+        // 卸载异步操作设置状态
+        this.setState = (state, callback) => {
+            return;
+        }
     }
 
     render() {
         let { adv, category, name, premiereAt, nation, runtime, synopsis, actors, photos } = this.state.data;
+
         return (
             <div className="detail"
                 ref={node => {

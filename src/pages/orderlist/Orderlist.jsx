@@ -139,8 +139,14 @@ class Orderlist extends Component {
         await Api.patch('http://localhost:1908/cinema/upuser', { _id: this.state.userInfo._id, oderlist: JSON.stringify(arrlist) })
 
         alert("支付成功")
+        this.props.history.push({ pathname: `/user/order` })
     }
-
+    componentWillUnmount() {
+        // 卸载异步操作设置状态
+        this.setState = (state, callback) => {
+            return;
+        }
+    }
 
     render() {
         return (

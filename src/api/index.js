@@ -39,6 +39,7 @@ let getReadyFilm = async (params) => {
         params: {
         }
     })
+    // console.log(data)
     data.data.forEach(element => {
         element.actors = JSON.parse(element.actors)
         element.filmType = JSON.parse(element.filmType)
@@ -87,6 +88,7 @@ let getflimdetail = async (filmId, params) => {
     let { data } = await axios.get(`http://localhost:1908/film/${filmId}`, { params })
 
     data.data.forEach(element => {
+        console.log(element)
         element.actors = JSON.parse(element.actors)
         element.filmType = JSON.parse(element.filmType)
         element.photos = JSON.parse(element.photos)

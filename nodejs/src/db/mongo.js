@@ -63,7 +63,7 @@ exports.update = async (colName, query, data) => {
         query._id = ObjectId(query._id);
 
     }
-
+    // console.log(query, data)
     //  获取集合
     let collection = db.collection(colName);
 

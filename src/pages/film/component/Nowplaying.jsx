@@ -37,7 +37,8 @@ class Nowplaying extends Component {
     }
     bgoto = (id, e) => {
         e.stopPropagation();
-        console.log(1231231);
+        // console.log(1231231);
+        this.props.history.push({ pathname: `/cinema` })
 
     }
     handleInfiniteOnLoad = () => {
@@ -58,6 +59,12 @@ class Nowplaying extends Component {
             data: filmdata,
             loading: false
         })
+    }
+    componentWillUnmount() {
+        // 卸载异步操作设置状态
+        this.setState = (state, callback) => {
+            return;
+        }
     }
     render() {
         return (

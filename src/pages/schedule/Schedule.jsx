@@ -208,6 +208,12 @@ class Schedule extends Component {
             })
         })
     }
+    componentWillUnmount() {
+        // 卸载异步操作设置状态
+        this.setState = (state, callback) => {
+            return;
+        }
+    }
 
     render() {
         return (

@@ -162,6 +162,13 @@ class Discover extends Component {
         this.props.history.push(`/cinemadetail/${_id}`)
     }
 
+    componentWillUnmount() {
+        // 卸载异步操作设置状态
+        this.setState = (state, callback) => {
+            return;
+        }
+    }
+
 
     render() {
         let data = this.props
